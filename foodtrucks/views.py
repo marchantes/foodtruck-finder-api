@@ -1,3 +1,8 @@
-from django.shortcuts import render
+from rest_framework import generics
+from foodtrucks.models import Foodtruck
+from foodtrucks.serializers import FoodtruckSerializer
 
-# Create your views here.
+
+class FoodtruckList(generics.ListCreateAPIView):
+    queryset = Foodtruck.objects.all()
+    serializer_class = FoodtruckSerializer
