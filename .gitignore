@@ -65,3 +65,6 @@ target/
 .jpeg
 .gif
 .img
+
+# Media files
+media/
