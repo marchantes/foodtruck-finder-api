@@ -58,3 +58,10 @@ target/
 
 # sqlite
 *.sqlite3
+
+# images files
+.png
+.jpg
+.jpeg
+.gif
+.img
