@@ -13,7 +13,7 @@ List all the foodtrucks registered.
 #### Response sample:
 
 HTTP Status Code: 200
-
+```json
 [
     {
         "id": 1,
@@ -46,7 +46,7 @@ HTTP Status Code: 200
         }
     }
 ]
-
+```
 
 ### GET /api/v1/foodtrucks/{pk}
 
@@ -55,7 +55,7 @@ List an specific foodtruck based on its primary key.
 #### Response sample.
 
 HTTP Status Code: 200
-
+```json
 {
   "id": 1,
   "facebook": "http://www.facebook.com/some_foodtruck",
@@ -71,7 +71,7 @@ HTTP Status Code: 200
     "long": "-99.133208"
   }
 }
-
+```
 
 ### GET /api/v1/foodtrucks/{pk}/comments
 
@@ -80,7 +80,7 @@ List the comments of a foodtruck.
 #### Response sample.
 
 HTTP Status Code: 200
-
+```json
 [
     {
         "id": 1,
@@ -91,3 +91,4 @@ HTTP Status Code: 200
         "likes": 0
     }
 ]
+```
