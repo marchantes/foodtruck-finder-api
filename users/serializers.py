@@ -1,7 +1,5 @@
 from rest_framework import serializers
 from users.models import *
-from django.contrib.auth.models import User
-from foodtrucks.models import Foodtruck
 
 
 class FavSerializer(serializers.ModelSerializer):
@@ -14,5 +12,5 @@ class FavSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = User
-        fields = ('id', 'username', 'email')
+        model = UserProfile
+        fields = ('id', 'email', 'password', 'profile_picture_url')
