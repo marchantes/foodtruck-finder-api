@@ -42,7 +42,11 @@ class UserProfile(AbstractBaseUser):
         max_length=255,
         unique=True,
     )
-    profile_picture_url = models.URLField(max_length=1000, null=True)
+    profile_picture = models.ImageField(
+        upload_to='img/users/profile_picture',
+        blank=True,
+        null=True,
+    )
     is_owner = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
