@@ -18,7 +18,7 @@ class FoodtruckSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
+    user = serializers.ReadOnlyField(source='user.email')
     foodtruck = serializers.ReadOnlyField(source='foodtruck.id')
 
     class Meta:
