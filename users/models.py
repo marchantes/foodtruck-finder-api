@@ -1,3 +1,8 @@
 from django.db import models
-from location_field.models.plain import PlainLocationField
 from django.contrib.auth.models import User
+
+
+class Fav(models.Model):
+    user = models.ForeignKey(User, default=1)
+    foodtruck = models.OneToOneField('foodtrucks.Foodtruck',
+                                     related_name='foodtrucks')
