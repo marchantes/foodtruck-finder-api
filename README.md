@@ -6,7 +6,7 @@ REST API for the Foodtruckers App
 
 ## Foodtrucks
 
-### GET /api/v1/foodtrucks
+### GET /api/v1/foodtrucks/
 
 List all the foodtrucks registered.
 
@@ -48,7 +48,7 @@ HTTP Status Code: 200
 ]
 ```
 
-### GET /api/v1/foodtrucks/{pk}
+### GET /api/v1/foodtrucks/{pk}/
 
 List an specific foodtruck based on its primary key.
 
@@ -73,7 +73,7 @@ HTTP Status Code: 200
 }
 ```
 
-### GET /api/v1/foodtrucks/{pk}/comments
+### GET /api/v1/foodtrucks/{pk}/comments/
 
 List the comments of a foodtruck.
 
@@ -91,4 +91,36 @@ HTTP Status Code: 200
         "likes": 0
     }
 ]
+```
+
+## Users
+
+### GET /api/v1/users/
+
+List all users regustered.
+
+#### Response sample.
+
+HTTP Status Code: 200
+```json
+[
+    {
+        "email": "oshardy3@gmail.com",
+        "profile_picture": null
+    }
+]
+```
+
+### GET /api/v1/users/{pk}/
+
+List the detail of a single user.
+
+#### Response sample
+
+HTTP Status Code: 200
+```json
+{
+    "email": "oshardy3@gmail.com",
+    "profile_picture": null
+}
 ```
