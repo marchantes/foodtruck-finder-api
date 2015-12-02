@@ -26,6 +26,7 @@ INSTALLED_APPS = (
 
     #   API apps
     'foodtrucks',
+    'users',
 
     #   REST Framework
     'rest_framework',
