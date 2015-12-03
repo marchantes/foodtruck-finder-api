@@ -19,7 +19,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework.authtoken',
 
     #   Model's location field
     'location_field',
@@ -30,6 +29,7 @@ INSTALLED_APPS = (
 
     #   REST Framework
     'rest_framework',
+    'rest_framework.authtoken',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -99,3 +99,10 @@ MEDIA_ROOT = (
     os.path.join(BASE_DIR, 'media')
 )
 AUTH_USER_MODEL = 'users.UserProfile'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
