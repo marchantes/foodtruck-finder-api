@@ -10,10 +10,12 @@ class FoodtruckSerializer(serializers.ModelSerializer):
             choices=[1, 2, 3, 4, 5]
         )
 
+    owner = serializers.ReadOnlyField(source='owner.email')
+
     class Meta:
         model = Foodtruck
         fields = ('id', 'facebook', 'food_type',
-                  'location', 'name', 'photo', 'price',
+                  'location', 'name', 'owner', 'photo', 'price',
                   'rating', 'twitter', 'location_object')
 
 
