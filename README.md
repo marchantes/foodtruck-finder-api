@@ -1,6 +1,8 @@
 # Foodtruckers API
 
-REST API for the Foodtruckers App
+REST API for the Foodtruckers App.
+
+
 
 # Endpoints
 
@@ -26,8 +28,8 @@ HTTP Status Code: 200
         "rating": 5,
         "twitter": "http://twitter.com/some_foodtruck",
         "location_object": {
-            "lat": "19.432608",
-            "long": "-99.133208"
+            "lat": 19.432608,
+            "long": -99.133208
         }
     },
     {
@@ -41,8 +43,8 @@ HTTP Status Code: 200
         "rating": 4,
         "twitter": "http://twitter.com/other_foodtruck",
         "location_object": {
-            "lat": "19.234521",
-            "long": "-99.114567"
+            "lat": 19.234521,
+            "long": -99.114567
         }
     }
 ]
@@ -67,8 +69,8 @@ HTTP Status Code: 200
   "rating": 5,
   "twitter": "http://twitter.com/some_foodtruck",
   "location_object": {
-    "lat": "19.432608",
-    "long": "-99.133208"
+    "lat": 19.432608,
+    "long": -99.133208
   }
 }
 ```
@@ -105,7 +107,13 @@ HTTP Status Code: 200
 ```json
 [
     {
-        "email": "oshardy3@gmail.com",
+        "id": 1,
+        "email": "my@mail.com",
+        "profile_picture": null
+    },
+    {
+        "id": 2,
+        "email": "some@mail.com",
         "profile_picture": null
     }
 ]
@@ -120,7 +128,8 @@ List the detail of a single user.
 HTTP Status Code: 200
 ```json
 {
-    "email": "oshardy3@gmail.com",
+    "id": 2,
+    "email": "some@mail.com",
     "profile_picture": null
 }
 ```
