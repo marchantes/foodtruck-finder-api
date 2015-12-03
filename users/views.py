@@ -1,6 +1,6 @@
-from rest_framework import generics
+from rest_framework import generics, permissions
 from users.models import *
-from users.serializers import *
+from users.serializers import UserSerializer, FavSerializer
 
 
 class UserList(generics.ListCreateAPIView):
@@ -9,11 +9,13 @@ class UserList(generics.ListCreateAPIView):
 
 
 class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = UserProfile.objects.all()
     serializer_class = UserSerializer
 
 
 class FavList(generics.ListCreateAPIView):
+    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     serializer_class = FavSerializer
 
     def perform_create(self, serializers):
