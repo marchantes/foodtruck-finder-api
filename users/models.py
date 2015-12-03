@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.conf import settings
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from rest_framework.authtoken.models import Token
 
 
 class Fav(models.Model):
@@ -8,9 +12,11 @@ class Fav(models.Model):
 
 
 class UserProfileManager(BaseUserManager):
+
     """
     Manager for the custom user model
     """
+
     def create_user(self, email, password=None):
         if not email:
             raise ValueError('Users must have an email address')
@@ -34,9 +40,11 @@ class UserProfileManager(BaseUserManager):
 
 
 class UserProfile(AbstractBaseUser):
+
     """
     Custom user model
     """
+
     email = models.EmailField(
         verbose_name='email address',
         max_length=255,
@@ -79,3 +87,12 @@ class UserProfile(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+
+@receiver(post_save, sender=settings.AUTH_USER_MODEL)
+def create_auth_token(sender, instance=None, created=False, **kwargs):
+    """
+    Generate a Token for every user when registering
+    """
+    if created:
+        Token.objects.create(user=instance)

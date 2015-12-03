@@ -4,7 +4,6 @@ from users.serializers import UserSerializer, FavSerializer
 
 
 class UserList(generics.ListCreateAPIView):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     queryset = UserProfile.objects.all()
     serializer_class = UserSerializer
 
