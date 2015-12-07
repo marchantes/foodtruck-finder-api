@@ -36,8 +36,9 @@ class FavList(generics.ListCreateAPIView):
         current_user = UserProfile.objects.get(pk=self.kwargs['pk'])
         serializers.save(user=current_user)
 
-    def get_queryset(self):
+    def dispatch(self, request, *args, **kwargs):
         self.queryset = Fav.objects.filter(user=self.kwargs['pk'])
+        return super(FavList, self).dispatch(request, *args, **kwargs)
 
     def get_object(self):
         queryset = self.get_queryset()
