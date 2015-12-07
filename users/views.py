@@ -34,11 +34,10 @@ class FavList(generics.ListCreateAPIView):
 
     def perform_create(self, serializers):
         current_user = UserProfile.objects.get(pk=self.kwargs['pk'])
-        serializer.save(user=current_user)
+        serializers.save(user=current_user)
 
-    def dispatch(self, request, *args, **kwargs):
-        self.queryset = UserProfile.objects.filter(pk=self.kwargs['pk'])
-        return super(FavList, self).dispatch(request, *args, **kwargs)
+    def get_queryset(self):
+        self.queryset = Fav.objects.filter(user=self.kwargs['pk'])
 
     def get_object(self):
         queryset = self.get_queryset()
