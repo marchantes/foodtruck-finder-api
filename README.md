@@ -133,3 +133,38 @@ HTTP Status Code: 200
     "profile_picture": null
 }
 ```
+
+### GET /api/v1/users/{pk}/favs/
+
+List user's favorites.
+
+#### Response sample
+
+HTTP Status Code: 200
+```json
+[
+    {
+        "id": 1,
+        "foodtruck": 1,
+        "user": "my@mail.com"
+    },
+    {
+        "id": 2,
+        "foodtruck": 2,
+        "user": "my@mail.com"
+    }
+]
+```
+
+### GET /api/v1/users/{pk}/favs/{fav_pk}/
+
+List a single favorite of the user
+
+HTTP Status Code: 200
+```json
+{
+    "foodtruck": 1,
+    "id": 1,
+    "user": "my@mail.com"
+}
+```
