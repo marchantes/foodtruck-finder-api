@@ -48,3 +48,23 @@ class FavList(generics.ListCreateAPIView):
             )
         self.check_object_permissions(self.request, obj)
         return obj
+
+
+class FavDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (
+                          permissions.IsAuthenticatedOrReadOnly,
+                          IsOwnerOrReadOnly,
+                          )
+    lookup_field = "fav_pk"
+    lookup_url_kwarg = "fav_pk"
+    serializer_class = FavSerializer
+    queryset = Fav.objects.all()
+
+    def get_object(self):
+        queryset = self.get_queryset()
+        obj = get_object_or_404(
+            queryset,
+            pk=self.kwargs['fav_pk'],
+            )
+        self.check_object_permissions(self.request, obj)
+        return obj

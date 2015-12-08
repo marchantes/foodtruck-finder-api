@@ -8,7 +8,10 @@ from rest_framework.authtoken.models import Token
 
 class Fav(models.Model):
     user = models.ForeignKey('UserProfile')
-    foodtruck = models.ForeignKey('foodtrucks.Foodtruck')
+    foodtruck = models.OneToOneField('foodtrucks.Foodtruck')
+
+    def __str__(self):
+        return "ID: {}\nFoodtruck: {}\n".format(self.id, self.foodtruck)
 
 
 class UserProfileManager(BaseUserManager):
