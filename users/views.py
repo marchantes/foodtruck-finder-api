@@ -3,6 +3,8 @@ from users.models import *
 from users.serializers import UserSerializer, FavSerializer
 from users.permissions import IsOwnerOrReadOnly
 from django.shortcuts import get_object_or_404
+from rest_framework import status
+from rest_framework.response import Response
 
 
 class UserList(generics.ListCreateAPIView):
@@ -48,6 +50,25 @@ class FavList(generics.ListCreateAPIView):
             )
         self.check_object_permissions(self.request, obj)
         return obj
+
+    def handle_exception(self, exc):
+        e = str(exc)
+        # Handle error if foodtruck is already in user's favorites
+        if 'unique constraint failed' in e.lower():
+            exc.status_code = status.HTTP_406_NOT_ACCEPTABLE
+            data = {'detail': 'Foodtruck already in favorites.'}
+            return Response(data, exc.status_code)
+
+        exception_handler = self.settings.EXCEPTION_HANDLER
+
+        context = self.get_exception_handler_context()
+        response = exception_handler(exc, context)
+
+        if response is None:
+            raise
+
+        response.exception = True
+        return response
 
 
 class FavDetail(generics.RetrieveUpdateDestroyAPIView):
