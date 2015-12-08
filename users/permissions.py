@@ -1,4 +1,5 @@
 from rest_framework import permissions
+from users.models import Fav
 
 
 class IsOwnerOrReadOnly(permissions.BasePermission):
@@ -14,6 +15,11 @@ class IsOwnerOrReadOnly(permissions.BasePermission):
             return True
 
         # Write permissions are only allowed to the owner of the snippet.
+        """
+        Special case for the Fav related views
+        """
+        if isinstance(obj, Fav):
+            return obj.user == request.user
         """
         For some reason this only works with the ID's of both objects
         If it is made with emails,

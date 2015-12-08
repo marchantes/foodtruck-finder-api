@@ -1,8 +1,14 @@
 from rest_framework import serializers
 from users.models import *
+from foodtrucks.models import Foodtruck
 
 
 class FavSerializer(serializers.ModelSerializer):
+
+    user = serializers.ReadOnlyField(source='user.email')
+    foodtruck = serializers.PrimaryKeyRelatedField(
+            queryset=Foodtruck.objects.all(),
+        )
 
     class Meta:
         model = Fav
