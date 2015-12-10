@@ -1,6 +1,6 @@
 from rest_framework import generics, permissions
 from users.models import *
-from users.serializers import UserSerializer, FavSerializer
+from users.serializers import *
 from users.permissions import IsOwnerOrReadOnly
 from django.shortcuts import get_object_or_404
 from rest_framework import status
@@ -32,7 +32,16 @@ class FavList(generics.ListCreateAPIView):
                           permissions.IsAuthenticatedOrReadOnly,
                           IsOwnerOrReadOnly,
                           )
-    serializer_class = FavSerializer
+
+    def get(self, request, *args, **kwargs):
+        self.serializer_class = FavListSerializer
+        print("GET")
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        self.serializer_class = FavCreateSerializer
+        print("POST")
+        return self.create(request, *args, **kwargs)
 
     def perform_create(self, serializers):
         current_user = UserProfile.objects.get(pk=self.kwargs['pk'])
@@ -78,7 +87,7 @@ class FavDetail(generics.RetrieveUpdateDestroyAPIView):
                           )
     lookup_field = "fav_pk"
     lookup_url_kwarg = "fav_pk"
-    serializer_class = FavSerializer
+    serializer_class = FavListSerializer
     queryset = Fav.objects.all()
 
     def get_object(self):
