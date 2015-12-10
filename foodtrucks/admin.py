@@ -7,9 +7,9 @@ class FoodtruckAdmin(admin.ModelAdmin):
     fieldsets = [
         (None,          {'fields': ['city', 'facebook', 'food_type',
                                     'location', 'name', 'photo', 'price',
-                                    'rating', 'twitter']}
+                                    'socre', 'twitter']}
          )
     ]
     list_display = ('id', 'city', 'facebook', 'food_type',
                     'location', 'name', 'photo', 'price',
-                    'rating', 'twitter')
+                    'score', 'average_rating', 'twitter')

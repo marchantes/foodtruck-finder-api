@@ -11,9 +11,10 @@ class Foodtruck(models.Model):
     name = models.CharField(max_length=100)
     owner = models.ForeignKey(UserProfile)
     photo = models.ImageField(upload_to='img/foodtrucks/', blank=True)
-    price = models.IntegerField()
-    rating = models.IntegerField()
+    price = models.PositiveIntegerField(default=0)
+    score = models.PositiveIntegerField(default=0)
     twitter = models.URLField()
+    votes = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return "\nName: {}\nRating: {}\nFoodtype: {}\n".format(self.name,
@@ -30,6 +31,14 @@ class Foodtruck(models.Model):
             return location_object
         else:
             return "No available location."
+
+    @property
+    def average_rating(self):
+        try:
+            rating = self.score / self.votes
+            return rating
+        except:
+            return 0
 
 
 class Comment(models.Model):

@@ -4,19 +4,19 @@ from rest_framework import serializers
 
 class FoodtruckSerializer(serializers.ModelSerializer):
 
-    location_object = serializers.ReadOnlyField(source='location_parser',
-                                                read_only=True)
-    rating = serializers.ChoiceField(
+    location_object = serializers.ReadOnlyField(source='location_parser')
+    score = serializers.ChoiceField(
             choices=[1, 2, 3, 4, 5]
         )
-
     owner = serializers.ReadOnlyField(source='owner.email')
+    rating = serializers.ReadOnlyField(source='average_rating')
+    votes = serializers.ReadOnlyField()
 
     class Meta:
         model = Foodtruck
         fields = ('id', 'facebook', 'food_type',
                   'location', 'name', 'owner', 'photo', 'price',
-                  'rating', 'twitter', 'location_object')
+                  'rating', 'score', 'twitter', 'location_object', 'votes')
 
 
 class CommentSerializer(serializers.ModelSerializer):
