@@ -8,10 +8,13 @@ from rest_framework.authtoken.models import Token
 
 class Fav(models.Model):
     user = models.ForeignKey('UserProfile')
-    foodtruck = models.OneToOneField('foodtrucks.Foodtruck', unique=True)
+    foodtruck = models.ForeignKey('foodtrucks.Foodtruck')
 
     def __str__(self):
         return "ID: {}\nFoodtruck: {}\n".format(self.id, self.foodtruck)
+
+    class Meta:
+        unique_together = ("user", "foodtruck")
 
 
 class UserProfileManager(BaseUserManager):
