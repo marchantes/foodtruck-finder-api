@@ -5,9 +5,6 @@ from rest_framework import serializers
 class FoodtruckSerializer(serializers.ModelSerializer):
 
     location_object = serializers.ReadOnlyField(source='location_parser')
-    score = serializers.ChoiceField(
-            choices=[1, 2, 3, 4, 5]
-        )
     owner = serializers.ReadOnlyField(source='owner.email')
     rating = serializers.ReadOnlyField(source='average_rating')
     votes = serializers.ReadOnlyField()

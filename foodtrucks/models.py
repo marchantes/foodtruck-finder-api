@@ -18,7 +18,7 @@ class Foodtruck(models.Model):
 
     def __str__(self):
         return "\nName: {}\nRating: {}\nFoodtype: {}\n".format(self.name,
-                                                               self.rating,
+                                                               self.average_rating,
                                                                self.food_type)
 
     @property
@@ -39,6 +39,13 @@ class Foodtruck(models.Model):
             return rating
         except:
             return 0
+
+    def save(self, *args, **kwargs):
+        if self.pk is not None:
+            orig = Foodtruck.objects.get(pk=self.pk)
+            if orig.score != self.score:
+                print("Score updated")
+        super(Foodtruck, self).save(*args, **kwargs)
 
 
 class Comment(models.Model):

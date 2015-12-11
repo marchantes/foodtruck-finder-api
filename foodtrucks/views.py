@@ -3,7 +3,6 @@ from foodtrucks.models import Foodtruck, Comment
 from foodtrucks.serializers import FoodtruckSerializer, CommentSerializer
 from foodtrucks.permissions import IsOwnerOrReadOnly
 from django.shortcuts import get_object_or_404
-from rest_framework.response import Response
 
 
 class FoodtruckList(generics.ListCreateAPIView):
