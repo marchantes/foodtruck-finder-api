@@ -36,7 +36,7 @@ class Foodtruck(models.Model):
     def average_rating(self):
         try:
             rating = self.score / self.votes
-            return rating
+            return round(rating, 1)
         except:
             return 0
 
@@ -44,7 +44,9 @@ class Foodtruck(models.Model):
         if self.pk is not None:
             orig = Foodtruck.objects.get(pk=self.pk)
             if orig.score != self.score:
-                print("Score updated")
+                new_score = orig.score + self.score
+                self.votes += 1
+                self.score = new_score
         super(Foodtruck, self).save(*args, **kwargs)
 
 
