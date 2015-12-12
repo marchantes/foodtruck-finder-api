@@ -3,4 +3,4 @@ django-location-field == 1.6.1
 djangorestframework == 3.3.1
 Pillow == 3.0.0
 selenium == 2.48.0
-
+django-cors-headers==1.1.0

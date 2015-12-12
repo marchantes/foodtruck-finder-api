@@ -30,10 +30,14 @@ INSTALLED_APPS = (
     #   REST Framework
     'rest_framework',
     'rest_framework.authtoken',
+
+    #   CORS (Cross-Origin Resource Sharing) headers to responses
+    'corsheaders',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -107,3 +111,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     )
 }
+
+#   CORS (Cross-Origin Resource Sharing)
+
+CORS_ORIGIN_ALLOW_ALL = True
